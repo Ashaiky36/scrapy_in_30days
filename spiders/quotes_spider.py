@@ -15,10 +15,14 @@ class QuotesSpider(scrapy.Spider):
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
 
-#hi this is a change
+
 
     def parse(self, response):
         page = response.url.split("/")[-2]
         filename = f"quotes-{page}.html"
         Path(filename).write_bytes(response.body)
         self.log(f"Saved file{filename}")        
+
+
+
+#today we created our first spider to scrape quotes from "quotes.toscrape.com" and turn it into an html file        
